@@ -1,0 +1,33 @@
+For some reason, Tika throws an OOM error for the provided PDF file.
+
+```
+Exception in thread "main" java.lang.OutOfMemoryError: Required array length 2147483638 + 14 is too large
+	at java.base/jdk.internal.util.ArraysSupport.hugeLength(ArraysSupport.java:649)
+	at java.base/jdk.internal.util.ArraysSupport.newLength(ArraysSupport.java:642)
+	at java.base/java.lang.AbstractStringBuilder.newCapacity(AbstractStringBuilder.java:257)
+	at java.base/java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:229)
+	at java.base/java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:740)
+	at java.base/java.lang.StringBuffer.append(StringBuffer.java:410)
+	at java.base/java.io.StringWriter.write(StringWriter.java:99)
+	at org.apache.tika.sax.ToTextContentHandler.characters(ToTextContentHandler.java:108)
+	at org.apache.tika.sax.ContentHandlerDecorator.characters(ContentHandlerDecorator.java:141)
+	at org.apache.tika.sax.WriteOutContentHandler.characters(WriteOutContentHandler.java:160)
+	at org.apache.tika.sax.ContentHandlerDecorator.characters(ContentHandlerDecorator.java:141)
+	at org.apache.tika.sax.xpath.MatchingContentHandler.characters(MatchingContentHandler.java:81)
+	at org.apache.tika.sax.ContentHandlerDecorator.characters(ContentHandlerDecorator.java:141)
+	at org.apache.tika.sax.ContentHandlerDecorator.characters(ContentHandlerDecorator.java:141)
+	at org.apache.tika.sax.SafeContentHandler.access$201(SafeContentHandler.java:47)
+	at org.apache.tika.sax.SafeContentHandler.lambda$new$0(SafeContentHandler.java:57)
+	at org.apache.tika.sax.SafeContentHandler.filter(SafeContentHandler.java:106)
+	at org.apache.tika.sax.SafeContentHandler.characters(SafeContentHandler.java:250)
+	at org.apache.tika.sax.XHTMLContentHandler.characters(XHTMLContentHandler.java:270)
+	at org.apache.tika.sax.XHTMLContentHandler.characters(XHTMLContentHandler.java:295)
+	at org.apache.tika.parser.pdf.AbstractPDF2XHTML.extractBookmarkText(AbstractPDF2XHTML.java:977)
+	at org.apache.tika.parser.pdf.AbstractPDF2XHTML.extractBookmarkText(AbstractPDF2XHTML.java:981)
+	at org.apache.tika.parser.pdf.AbstractPDF2XHTML.extractBookmarkText(AbstractPDF2XHTML.java:959)
+	at org.apache.tika.parser.pdf.AbstractPDF2XHTML.endDocument(AbstractPDF2XHTML.java:907)
+	at org.apache.pdfbox.text.PDFTextStripper.writeText(PDFTextStripper.java:239)
+	at org.apache.tika.parser.pdf.PDF2XHTML.process(PDF2XHTML.java:108)
+	at org.apache.tika.parser.pdf.PDFParser.parse(PDFParser.java:196)
+	at com.example.TikaOOMExample.main(TikaOOMExample.java:31)
+```
